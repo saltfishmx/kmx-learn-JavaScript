@@ -1,0 +1,80 @@
+1.JavaScript在设计时，有两种比较运算符：
+
+第一种是==比较，它会自动转换数据类型再比较，很多时候，会得到非常诡异的结果；
+
+第二种是===比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较。
+
+由于JavaScript这个设计缺陷，不要使用==比较，始终坚持使用===比较。
+
+
+
+2.在JavaScript中，使用等号=对变量进行赋值。可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量，但是要注意只能用var申明一次，例如：
+
+var a = 123; // a的值是整数123
+a = 'ABC'; // a变为字符串
+
+
+3.要显示变量的内容，可以用console.log(x)，打开Chrome的控制台就可以看到结果。
+
+
+4.由于多行字符串用\n写起来比较费事，所以最新的ES6标准新增了一种多行字符串的表示方法，用反引号 * ... * 表示：
+`这是一个
+多行
+字符串`;
+反引号在键盘的ESC下方，数字键1的左边：
+
+如果有很多变量需要连接，用+号就比较麻烦。ES6新增了一种模板字符串，表示方法和上面的多行字符串一样，但是它会自动替换字符串中的变量： （要用${}）
+
+
+5.需要特别注意的是，字符串是不可变的，如果对字符串的某个索引赋值，不会有任何错误，但是，也没有任何效果：
+
+
+6.字符串方法
+toUpperCase()把一个字符串全部变为大写：
+
+var s = 'Hello';
+s.toUpperCase(); // 返回'HELLO'
+
+indexOf()会搜索指定字符串出现的位置：
+
+substring()返回指定索引区间的子串：
+
+var s = 'hello, world'
+s.substring(0, 5); // 从索引0开始到5（不包括5），返回'hello'
+s.substring(7); // 从索引7开始到结束，返回'world'
+
+
+7.数组方法
+
+indexOf 搜索指定元素位置
+
+slice()就是对应String的substring()版本，它截取Array的部分元素，然后返回一个新的Array：
+
+push()向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉：
+
+如果要往Array的头部添加若干元素，使用unshift()方法，shift()方法则把Array的第一个元素删掉：
+
+splice()方法是修改Array的“万能方法”，它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素：
+
+var arr = ['Microsoft', 'Apple', 'Yahoo', 'AOL', 'Excite', 'Oracle'];
+// 从索引2开始删除3个元素,然后再添加两个元素:
+arr.splice(2, 3, 'Google', 'Facebook'); // 返回删除的元素 ['Yahoo', 'AOL', 'Excite']
+arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
+// 只删除,不添加:
+arr.splice(2, 2); // ['Google', 'Facebook']
+arr; // ['Microsoft', 'Apple', 'Oracle']
+// 只添加,不删除:
+arr.splice(2, 0, 'Google', 'Facebook'); // 返回[],因为没有删除任何元素
+arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
+
+concat 拼接
+
+join()方法是一个非常实用的方法，它把当前Array的每个元素都用指定的字符串连接起来，然后返回连接后的字符串：
+
+var arr = ['A', 'B', 'C', 1, 2, 3];
+arr.join('-'); // 'A-B-C-1-2-3'
+
+8.JavaScript用一个{...}表示一个对象，键值对以xxx: xxx形式申明，用,隔开。注意，最后一个键值对不需要在末尾加,，如果加了，有的浏览器（如低版本的IE）将报错。
+
+删除对象的属性用delete 
+检测是否有属性用in
